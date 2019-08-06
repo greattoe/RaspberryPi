@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang=ko>
+  <head>
+    <title>Control LED on RPi</title>
+</head>
+
+  <body>
+    <h2>Control LED on RPi</h2>
+    
+    <a href="/red_on"    target="response"><h3>Turn on  red LED</h3></a>
+    <a href="/red_off"   target="response"><h3>Turn off red LED</h3></a>
+    
+    <a href="/green_on"  target="response"><h3>Turn on  green LED</h3></a>
+    <a href="/green_off" target="response"><h3>Turn off green LED</h3></a>
+    
+    <table>	
+      <tr height="30">
+        <td>Status Message: </br> &nbsp;</br> &nbsp;</td>
+        <td>
+          <iframe src="about:blank" width="300" height="30" frameborder="0" 
+                  marginwidth="0" marginheight="0" name="response"></iframe>
+          <p></p>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

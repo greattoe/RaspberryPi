@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang=ko>
+  <head>
+    <title>Control LED on RPi</title>
+  </head> 
+  <body> 
+    <table border="0">
+      <tr>
+        <td rowspan="3" width="20" height="50"></td>
+        <td colspan="4"><h2>Control LED on RPi</h2></td>
+      </tr>
+      <tr>
+        <td align="center"><img src="./images/offRed.gif" id="rd"></td>
+        <td>
+          <a href="/red_on"  target="response" align="right">
+            <h4><p onClick="red_on()" >On </p></h4>
+          </a>
+        </td>
+        <td>&nbsp;/ </td>
+        <td>
+          <a href="/red_off" target="response">
+            <h4><p onClick="red_off()">Off</p></h4>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td align="center"><img src="./images/offGreen.gif" id="grn"></td>
+        <td>
+          <a href="/green_on" target="response" align="right">
+            <h4><p onClick="green_on()">On </p></h4>
+          </a>
+        </td>
+        <td>&nbsp;/ </td>
+        <td>
+          <a href="/green_off" target="response">
+            <h4><p onClick="green_off()">Off</p></h4>
+          </a>
+        </td>
+      </tr>
+    </table>
+    
+    <table>	
+      <tr height="30">
+        <td width="20"></td>
+        <td>Status Message: </br> &nbsp;</br> &nbsp;</td>
+        <td>
+          <iframe src="about:blank" width="300" height="30" frameborder="0" 
+                  marginwidth="0" marginheight="0" name="response"></iframe>
+          <p></p>
+        </td>
+      </tr>
+    </table>
+    
+    <script>
+      function red_on(){
+        document.getElementById("rd").src = "./images/onRed.gif";
+      }
+      
+      function red_off(){
+        document.getElementById("rd").src = "./images/offRed.gif";
+      }
+      
+      function green_on(){
+        document.getElementById("grn").src = "./images/onGreen.gif";
+      }
+      
+      function green_off(){
+        document.getElementById("grn").src = "./images/offGreen.gif";
+      }
+    </script> 
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang=ko>
+  <head>
+    <meta charset="utf-8">
+    <title>3rd page</title>
+  </head>
+    
+  <body bgcolor="#a0a0ff">
+    <p><h2> page3 </h2></p>
+    <hr>
+    <p><h3> Change web page by switch input </h3></p>
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!--script src="./javascripts/jquery-1.12.4.min.js"></script-->
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+      $(function(){
+        var socket = io();
+        socket.on('page', function(pgName){
+          window.location.replace(pgName);
+        });
+      });
+    </script>
+  </body>
+</html>
