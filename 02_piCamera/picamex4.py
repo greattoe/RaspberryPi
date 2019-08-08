@@ -9,9 +9,8 @@ secTime = int(sys.argv[2])    # how long wait for to capture image in sec.
 camera = PiCamera()
 
 camera.start_preview()
-camera.start_capture(fName)
+camera.capture(fName)
 sleep(secTime)
-camera.stop_capture()
 camera.stop_preview()
 
 print "picture ./Desktop/",sys.argv[1]," is saved!!!"
