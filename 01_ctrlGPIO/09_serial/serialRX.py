@@ -15,24 +15,28 @@ GPIO.setup(24, GPIO.OUT)
 try:
   while(1):
     rcv = sio.readline()
-    print unicode(rcv)
-    
-    if( unicode(rcv[0:3]) == "red" ):
-      if( rcv[3] == "1" ):
-        GPIO.output(23, True )
-        print "RED On"
+    if(rcv != ""):
+      print unicode(rcv)
+      
+      if( unicode(rcv[0:3]) == "red" ):
+        if( rcv[3] == "1" ):
+          GPIO.output(23, True )
+          print "RED On"
+        else:
+          GPIO.output(23, False)
+          print "RED Off"
+         
+      elif( unicode(rcv[0:3]) == "grn" ):
+        if( rcv[3] == "1" ):
+          GPIO.output(24, True )
+          print "GREEN On"
+        else:
+          GPIO.output(24, False)
+          print "GREEN Off"
       else:
-        GPIO.output(23, False)
-        print "RED Off"
-       
-    elif( unicode(rcv[0:3]) == "grn" ):
-      if( rcv[3] == "1" ):
-        GPIO.output(24, True )
-        print "GREEN On"
-      else:
-        GPIO.output(24, False)
-        print "GREEN Off"
-        
+        pass
+      
 except KeyboardInterrupt:
+  print "\n", "program terminated by user!"
   GPIO.cleanup()
-  sio.flush() # it is buffering. required to get the data out *now*
+  sio.flush()
