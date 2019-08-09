@@ -2,8 +2,8 @@ import RPi.GPIO as GPIO
 import serial
 import io
 
-s = serial.serial_for_url('/dev/ttyUSB0', 115200, timeout=1)
-sio = io.TextIOWrapper(io.BufferedRWPair(s, s))
+ser = serial.serial_for_url('/dev/ttyUSB0', 115200, timeout=1)
+sio = io.TextIOWrapper(io.BufferedRWPair(ser, ser))
 
 rcv = ""
 
@@ -14,7 +14,9 @@ GPIO.setup(24, GPIO.OUT)
 
 try:
   while(1):
+    
     rcv = sio.readline()
+    
     if(rcv != ""):
       print unicode(rcv)
       
