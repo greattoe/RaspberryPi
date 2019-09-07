@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang=ko>
+  <head>
+    <meta charset="utf-8">
+    <title>2nd page</title>
+  </head>
+    
+  <body bgcolor="#c0c0c0">
+    <p><h2> page2 </h2></p>
+    <hr>
+    <p><h3> Change web page by switch input </h3></p>
+    <script src="javascripts/jquery-1.12.4.min.js"></script>
+    <script src="javascripts/annyang.min.js"></script>
+    <script src="javascripts/responsivevoice.js"></script>
+    <script>
+    $(document).ready(function()
+		{
+			if (annyang)
+			{
+				var commands = {
+					'퍼스트':function(){
+						responsiveVoice.speak("빨강색 엘이디가 켜졌습니다.", "Korean Female");
+						window.location.replace("index.html");
+					},
+					
+					'세컨드':function(){
+						responsiveVoice.speak("빨강색 엘이디가 꺼졌습니다.", "Korean Female");
+						window.location.replace("page2.html");
+					},
+          
+					'써드':function(){
+						responsiveVoice.speak("초록색 엘이디가 켜졌습니다.", "Korean Female");
+						window.location.replace("page3.html");
+					}
+				};
+				annyang.addCommands(commands);
+				annyang.removeCallback();
+				annyang.setLanguage('ko');
+				annyang.start({ autoRestart: true, continuous: false });
+			}
+		});
+    /*
+      $(function(){
+        var socket = io();
+        socket.on('page', function(pgName){
+          window.location.replace(pgName);
+        });
+      });
+    */
+    </script>
+  </body>
+</html>
