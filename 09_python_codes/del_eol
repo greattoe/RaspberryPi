@@ -1,5 +1,3 @@
 #!/bin/sh
 
-FILENAME=${1}
-
-sed -i "s/\r//" ./${FILENAME}
+sed -i "s/\r//" ./${1}
