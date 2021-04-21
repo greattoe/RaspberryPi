@@ -1,10 +1,11 @@
 var express  = require('express');
 var app      = express();
+/*
 var http     = require('http').Server(app);
 var io       = require('socket.io')(http);
 var SerialPort = require('serialport');
 
-var sp = new SerialPort('COM10', {
+var sp = new SerialPort('/dev/ttyACM0', {
   baudRate: 9600
 });
 
@@ -60,9 +61,12 @@ app.get('/led_off',function(req,res)
 		res.end('LED OFF\n');
 	}); 
 });
+*/
+var port      = 3000;
 
 app.use(express.static(__dirname + '/public'));
 
-http.listen(port, function() {  // server.listen(port, function() {
+//http.listen(port, function() {  // server.listen(port, function() {
+app.listen(port, function() {
     console.log('listening on *:' + port);
 });
