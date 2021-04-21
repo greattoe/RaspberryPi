@@ -1,14 +1,106 @@
-var express  = require('express');
-var app      = express();
-/*
-var http     = require('http').Server(app);
-var io       = require('socket.io')(http);
-var SerialPort = require('serialport');
+const express  = require('express');
+const app      = express();
+const SerialPort = require('serialport');
 
-var sp = new SerialPort('/dev/ttyACM0', {
+const port      = 3000;
+
+const sp = new SerialPort('/dev/ttyACM0', {
   baudRate: 9600
 });
 
+const maxPos   = 180;
+const minPos   =   0;
+const stepPos  =   5;
+
+var posPan     =  90;
+var posTilt    =  65;
+
+app.get('/up',function(req,res)
+{
+    if(posTilt + stepPos <= maxPos){
+        posTilt = posTilt + stepPos;
+    }
+    else{
+        posTilt = maxPos;
+    }
+	sp.write('tilt'+ posTilt + '\n', function(err){
+		if (err) {
+            return console.log('Error on write: ', err.message);
+        }
+        console.log('send: ' + posTilt);
+		res.writeHead(200, {'Content-Type': 'text/plain'});
+		res.end('\n');
+	});
+});
+
+app.get('/down',function(req,res)
+{
+    if(posTilt - stepPos >= minPos){
+        posTilt = posTilt - stepPos;
+    }
+    else{
+        posTilt = minPos;
+    }
+	sp.write('tilt'+ posTilt + '\n', function(err){
+		if (err) {
+            return console.log('Error on write: ', err.message);
+        }
+        console.log('send: ' + posTilt);
+		res.writeHead(200, {'Content-Type': 'text/plain'});
+		res.end('\n');
+	});
+});
+
+app.get('/left',function(req,res)
+{
+    if(posPan + stepPos <= maxPos){
+        posPan = posPan + stepPos;
+    }
+    else{
+        posPan = maxPos;
+    }
+	sp.write('pan'+ posPan + '\n', function(err){
+		if (err) {
+            return console.log('Error on write: ', err.message);
+        }
+        console.log('send: ' + posPan);
+		res.writeHead(200, {'Content-Type': 'text/plain'});
+		res.end('\n');
+	});
+});
+
+app.get('/right',function(req,res)
+{
+    if(posPan - stepPos >= minPos){
+        posPan = posPan - stepPos;
+    }
+    else{
+        posPan = minPos;
+    }
+	sp.write('pan'+ posPan + '\n', function(err){
+		if (err) {
+            return console.log('Error on write: ', err.message);
+        }
+        console.log('send: ' + posPan);
+		res.writeHead(200, {'Content-Type': 'text/plain'});
+		res.end('\n');
+	});
+});
+
+
+app.use(express.static(__dirname + '/public'));
+
+//http.listen(port, function() {  // server.listen(port, function() {
+app.listen(port, function() {
+    console.log('listening on *:' + port);
+});
+
+/*
+var http     = require('http').Server(app);
+var io       = require('socket.io')(http);
+*/
+
+/*
 var parsers    = SerialPort.parsers;
 var parser     = new parsers.Readline({
   delimiter: '\r\n'
@@ -37,36 +129,4 @@ parser.on('data', function(data)
       _adcValue = adcValue;
 	}
 });
-
-app.get('/led_on',function(req,res)
-{
-	sp.write('led1\n\r', function(err){
-		if (err) {
-            return console.log('Error on write: ', err.message);
-        }
-        console.log('send: led on');
-		res.writeHead(200, {'Content-Type': 'text/plain'});
-		res.end('LED ON\n');
-	});
-});
-
-app.get('/led_off',function(req,res)
-{
-	sp.write('led0\n\r', function(err){
-		if (err) {
-            return console.log('Error on write: ', err.message);
-        }
-        console.log('send: led off');
-		res.writeHead(200, {'Content-Type': 'text/plain'});
-		res.end('LED OFF\n');
-	}); 
-});
 */
-var port      = 3000;
-
-app.use(express.static(__dirname + '/public'));
-
-//http.listen(port, function() {  // server.listen(port, function() {
-app.listen(port, function() {
-    console.log('listening on *:' + port);
-});

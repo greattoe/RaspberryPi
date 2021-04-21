@@ -6,31 +6,27 @@
 </head>
 
 <body>
-    <!--
-        http://192.168.0.29:8080/stream_simple.html
-    -->
-	<table border="1">
-        <tr><td colspan=2><h2>RaspberryPi Web Camera</h2></td></tr>
+	<table border="0" width="720">
+        <tr><td colspan="2" align="center"><h2>RaspberryPi Web Camera</h2></td></tr>
         <tr>
-            <td>
-                <iframe src="http://localhost/stream_simple.html" frameborder="0" border="0" marginwidth="0" marginheight="0" name="mjpeg"></iframe>
+            <td width="640">
+                <iframe width="640" height="480" src="http://192.168.0.29:8080/stream_simple.html" frameborder="0" border="0" marginwidth="0" marginheight="0" name="mjpeg"></iframe>
             </td>
             <td>
-                <p><a href="/up"   >up   </a></p>
-                <p><a href="/down" >down </a></p>
-                <p><a href="/left" >left </a></p>
-                <p><a href="/right">right</a></p>
+                <p> &nbsp; <a href="/up"    target="response">up   </a></p>
+                <p> &nbsp; <a href="/down"  target="response">down </a></p>
+                <p> &nbsp; <a href="/left"  target="response">left </a></p>
+                <p> &nbsp; <a href="/right" target="response">right</a></p>
             </td>
         </tr>
 	</table>
-    
-    <!--iframe src="about:blank" width="0" height="0" frameborder="0" border="0" marginwidth="0" marginheight="0" name="iframe"></iframe-->
-    
-    <!--script src="http://code.jquery.com/jquery-1.8.3.js"></script-->
 	<!--script src="/socket.io/socket.io.js"></script-->
-	
-    <script>
-	</script>
-
+    <table>
+        <tr>
+            <td>
+                <iframe width="50" height="10" src="about:blank" frameborder="0" border="0" marginwidth="0" marginheight="0" name="response"></iframe>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
